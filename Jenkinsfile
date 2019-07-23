@@ -1,12 +1,12 @@
 node{
-    stage('SCM Checkout'){
-        git 'https://github.com/MMuniraja/calcwebapp.git'
+    stage('cloning git'){
+        git 'https://github.com/harikousi31/calcwebapp.git'
     }
-    stage('Compile Package'){
-        def mvnHome = tool name: 'Maven', type: 'maven'
+    stage('build'){
+        def mvnHome = tool name: 'maven', type: 'maven'
         sh "${mvnHome}/bin/mvn package"
     }
     stage('Deploy to Tomcat'){ 
-        sh 'cp target/*.war /opt/tomcat9/webapps'
+        sh 'cp target/*.war /opt/tomcat/webapps'
     }    
 }
